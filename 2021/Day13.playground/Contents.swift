@@ -86,6 +86,30 @@ func findMergeSpaceTime(headA: Node?, headB: Node?) -> Int? {
     return nil
 }
 
+func findMergeInsight(headA: Node?, headB: Node?) -> Int? {
+    let m = length(headA)
+    let n = length(headB)
+    
+    let d = m - n
+    var currentA = headA
+    for _ in 1...d {
+        currentA = currentA?.next
+    }
+    
+    var currentB = headB
+    for _ in 0...n-1 {
+        let A = currentA?.data
+        let B = currentB?.data
+        if A == B {
+            return A
+        }
+        
+        currentA = currentA?.next
+        currentB = currentB?.next
+    }
+    return nil
+}
+
 
 // MARK: - Test Case
 
@@ -103,3 +127,4 @@ printLinkedList(node10)
 
 findMergeBrute(headA: node1, headB: node10)
 findMergeSpaceTime(headA: node1, headB: node10)
+findMergeInsight(headA: node1, headB: node10)
